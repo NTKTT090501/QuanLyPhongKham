@@ -5,6 +5,11 @@
  */
 package quanlyphongkham;
 
+import DAO.TaiKhoanDAO;
+import Entity.TaiKhoan;
+import Utilities.Auth;
+import Utilities.MsgBox;
+
 /**
  *
  * @author ADMIN
@@ -151,12 +156,12 @@ public class Login extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+        dangNhap();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        Thoat();
     }//GEN-LAST:event_btnExitActionPerformed
 
     /**
@@ -214,4 +219,24 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+    TaiKhoanDAO dao = new TaiKhoanDAO();
+    void dangNhap(){
+        String tenDN = txtUsername.getText();
+        String pass = txtPassword.getText();
+        TaiKhoan tk = dao.selectById(tenDN);
+         if (tk == null) {
+            MsgBox.alert(this, "không bỏ trống tenDN va matkhau");
+        } else if (!pass.equals(tk.getPass())) {
+            MsgBox.alert(this, "Sai mật khẩu!!!");
+        } else {
+            Auth.user = tk;
+            this.dispose();
+        }
+    }
+    
+    void Thoat(){
+        if(MsgBox.confirm(this, "Bạn có muốn thoát")){
+            System.exit(0);
+        }
+    }
 }
