@@ -35,21 +35,216 @@ public class index extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        lblPhieuKham = new javax.swing.JLabel();
+        lblBenhNhan = new javax.swing.JLabel();
+        lblThuoc = new javax.swing.JLabel();
+        lblBacSi = new javax.swing.JLabel();
         lblClock = new javax.swing.JLabel();
+        lblClock1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblDoanhThu = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         lblBackGround = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
+
+        lblPhieuKham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/phieukham1.png"))); // NOI18N
+        lblPhieuKham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPhieuKhamMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblPhieuKham);
+        lblPhieuKham.setBounds(270, 610, 170, 170);
+
+        lblBenhNhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/Victim1.png"))); // NOI18N
+        lblBenhNhan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBenhNhanMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblBenhNhan);
+        lblBenhNhan.setBounds(270, 230, 170, 170);
+
+        lblThuoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/medical1.png"))); // NOI18N
+        lblThuoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblThuocMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblThuoc);
+        lblThuoc.setBounds(90, 430, 170, 170);
+
+        lblBacSi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/doctor1.png"))); // NOI18N
+        lblBacSi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBacSiMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblBacSi);
+        lblBacSi.setBounds(90, 50, 170, 170);
 
         lblClock.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Clock.png"))); // NOI18N
         jPanel1.add(lblClock);
         lblClock.setBounds(1120, 840, 140, 50);
 
-        lblBackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/Index.jpeg"))); // NOI18N
+        lblClock1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblClock1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Info.png"))); // NOI18N
+        lblClock1.setText("Hệ Cơ Sở Quản Trị");
+        jPanel1.add(lblClock1);
+        lblClock1.setBounds(0, 840, 190, 50);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Bác Sĩ");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(150, 220, 60, 40);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Bệnh Nhân");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(310, 410, 87, 22);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Thuốc");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(140, 610, 70, 22);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Phiếu Khám");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(310, 790, 100, 16);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/bill medical 1.png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(450, 420, 180, 160);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("Đơn Thuốc");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(500, 600, 100, 22);
+
+        lblDoanhThu.setFont(new java.awt.Font("VNI-Vari", 0, 150)); // NOI18N
+        lblDoanhThu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoanhThu.setText("$");
+        lblDoanhThu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDoanhThuMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblDoanhThu);
+        lblDoanhThu.setBounds(470, 30, 170, 190);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Doanh Thu");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(510, 240, 90, 20);
+
+        lblBackGround.setForeground(new java.awt.Color(204, 204, 255));
+        lblBackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/Index4.jpg"))); // NOI18N
         jPanel1.add(lblBackGround);
         lblBackGround.setBounds(0, 0, 1260, 891);
+
+        jMenu1.setText("Hệ Thống");
+
+        jMenuItem1.setText("Đăng Xuất");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Kết Thúc");
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Quản Lý");
+
+        jMenuItem3.setText("Quản Lý Bác Sĩ");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Quản Lý Bệnh Nhân");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setText("Quản Lý Thuốc");
+        jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setText("Quản Lý Đơn Thuốc");
+        jMenu2.add(jMenuItem6);
+
+        jMenuItem7.setText("Quản Lý Phiếu Khám");
+        jMenu2.add(jMenuItem7);
+
+        jMenuItem8.setText("Doanh Thu");
+        jMenu2.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu4.setText("Hướng Dẫn Sử Dụng");
+
+        jMenuItem9.setText("Hướng dẫn");
+        jMenu4.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu4);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,6 +259,70 @@ public class index extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void lblBacSiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBacSiMouseClicked
+        // TODO add your handling code here:
+        new QuanLyBacSi(this,true).setVisible(true);
+    }//GEN-LAST:event_lblBacSiMouseClicked
+
+    private void lblBenhNhanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBenhNhanMouseClicked
+        // TODO add your handling code here:
+        new QuanLyBenhNhan(this,true).setVisible(true);
+    }//GEN-LAST:event_lblBenhNhanMouseClicked
+
+    private void lblThuocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblThuocMouseClicked
+        // TODO add your handling code here:
+        new QuanLyThuoc(this,true).setVisible(true);
+    }//GEN-LAST:event_lblThuocMouseClicked
+
+    private void lblPhieuKhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPhieuKhamMouseClicked
+        // TODO add your handling code here:
+        new QuanLyPhieuKham(this,true).setVisible(true);
+    }//GEN-LAST:event_lblPhieuKhamMouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        new QuanLyDonThuoc(this,true).setVisible(true);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void lblDoanhThuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoanhThuMouseClicked
+        // TODO add your handling code here:
+//        new DoanhThu(this,true).setVisible(true);
+    }//GEN-LAST:event_lblDoanhThuMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+         new QuanLyBacSi(this,true).setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+         new QuanLyBenhNhan(this,true).setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+         new QuanLyThuoc(this,true).setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+         new QuanLyPhieuKham(this,true).setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        new QuanLyDonThuoc(this,true).setVisible(true);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+//         new DoanhThu(this,true).setVisible(true);
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -101,9 +360,35 @@ public class index extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblBacSi;
     private javax.swing.JLabel lblBackGround;
+    private javax.swing.JLabel lblBenhNhan;
     private javax.swing.JLabel lblClock;
+    private javax.swing.JLabel lblClock1;
+    private javax.swing.JLabel lblDoanhThu;
+    private javax.swing.JLabel lblPhieuKham;
+    private javax.swing.JLabel lblThuoc;
     // End of variables declaration//GEN-END:variables
     private void init() {
         this.setLocationRelativeTo(null);
