@@ -9,17 +9,17 @@ package Entity;
  *
  * @author HA NAM
  */
-public class TaiKhoan {
-    String tenDN;
+public class Account {
+    String userName;
     String pass;
     boolean vaiTro;
 
-    public String getTenDN() {
-        return tenDN;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setTenDN(String tenDN) {
-        this.tenDN = tenDN;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPass() {
