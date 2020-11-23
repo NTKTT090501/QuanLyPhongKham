@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author HA NAM
  */
-public abstract class EduSysDAO<E,K> {
+public abstract class clinicMN<E,K> {
     abstract public void insert(E entity);
     abstract public void update(E entity);
     abstract public void delete(K key);

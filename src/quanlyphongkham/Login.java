@@ -5,8 +5,8 @@
  */
 package quanlyphongkham;
 
-import DAO.TaiKhoanDAO;
-import Entity.TaiKhoan;
+import DAO.AccountDAO;
+import Entity.Account;
 import Utilities.Auth;
 import Utilities.MsgBox;
 
@@ -219,11 +219,11 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-    TaiKhoanDAO dao = new TaiKhoanDAO();
+    AccountDAO dao = new AccountDAO();
     void dangNhap(){
         String tenDN = txtUsername.getText();
         String pass = txtPassword.getText();
-        TaiKhoan tk = dao.selectById(tenDN);
+        Account tk = dao.selectById(tenDN);
          if (tk == null) {
             MsgBox.alert(this, "không bỏ trống tenDN va matkhau");
         } else if (!pass.equals(tk.getPass())) {

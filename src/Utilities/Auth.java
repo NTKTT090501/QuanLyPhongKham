@@ -5,15 +5,13 @@
  */
 package Utilities;
 
-import Entity.TaiKhoan;
-
-
+import Entity.Account;
 /**
  *
  * @author HA NAM
  */
 public class Auth {
-    public static TaiKhoan user = null; // duy trì user đăng nhập
+    public static Account user = null; // duy trì user đăng nhập
     
     public static void clear(){// đăng xuất khỏi vai trò hiện tại
         Auth.user = null;

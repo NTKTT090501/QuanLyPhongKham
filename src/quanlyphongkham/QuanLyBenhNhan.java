@@ -5,6 +5,17 @@
  */
 package quanlyphongkham;
 
+import DAO.BenhNhanDAO;
+import Entity.Benhnhan;
+import Utilities.Auth;
+import Utilities.MsgBox;
+import Utilities.XDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ADMIN
@@ -17,7 +28,7 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
     public QuanLyBenhNhan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
+        init();
     }
 
     /**
@@ -35,29 +46,29 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtmaBN = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txthoTen = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdoNam = new javax.swing.JRadioButton();
+        rdoNu = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtDiaChi = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txttuoi = new javax.swing.JTextField();
+        txtngaySinh = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        txtsdT = new javax.swing.JTextField();
+        rdoCo = new javax.swing.JRadioButton();
+        rdoKhong = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        tblBenhNhan = new javax.swing.JTable();
+        btnThoat = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
+        btnSua = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
+        btnNhapMoi = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -79,37 +90,37 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
         jLabel3.setText("Họ Và Tên BN");
         jPanel2.add(jLabel3);
         jLabel3.setBounds(15, 83, 113, 22);
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(140, 40, 414, 30);
+        jPanel2.add(txtmaBN);
+        txtmaBN.setBounds(140, 40, 414, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Mã BN");
         jPanel2.add(jLabel4);
         jLabel4.setBounds(15, 41, 100, 22);
-        jPanel2.add(jTextField2);
-        jTextField2.setBounds(138, 85, 414, 30);
+        jPanel2.add(txthoTen);
+        txthoTen.setBounds(138, 85, 414, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Giới Tính");
         jPanel2.add(jLabel5);
         jLabel5.setBounds(15, 125, 71, 22);
 
-        buttonGroupGioiTinh.add(jRadioButton1);
-        jRadioButton1.setText("Nam");
-        jPanel2.add(jRadioButton1);
-        jRadioButton1.setBounds(138, 125, 55, 25);
+        buttonGroupGioiTinh.add(rdoNam);
+        rdoNam.setText("Nam");
+        jPanel2.add(rdoNam);
+        rdoNam.setBounds(138, 125, 55, 25);
 
-        buttonGroupGioiTinh.add(jRadioButton2);
-        jRadioButton2.setText("Nữ");
-        jPanel2.add(jRadioButton2);
-        jRadioButton2.setBounds(211, 125, 45, 25);
+        buttonGroupGioiTinh.add(rdoNu);
+        rdoNu.setText("Nữ");
+        jPanel2.add(rdoNu);
+        rdoNu.setBounds(211, 125, 45, 25);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Địa Chỉ");
         jPanel2.add(jLabel6);
         jLabel6.setBounds(15, 168, 57, 22);
-        jPanel2.add(jTextField3);
-        jTextField3.setBounds(113, 170, 780, 40);
+        jPanel2.add(txtDiaChi);
+        txtDiaChi.setBounds(113, 170, 780, 40);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Bảo Hiểm");
@@ -121,66 +132,99 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
         jPanel2.add(jLabel8);
         jLabel8.setBounds(619, 41, 35, 22);
 
-        jTextField5.setEditable(false);
-        jPanel2.add(jTextField5);
-        jTextField5.setBounds(685, 43, 44, 22);
-        jPanel2.add(jTextField6);
-        jTextField6.setBounds(747, 43, 121, 22);
+        txttuoi.setEditable(false);
+        jPanel2.add(txttuoi);
+        txttuoi.setBounds(685, 43, 44, 22);
+        jPanel2.add(txtngaySinh);
+        txtngaySinh.setBounds(747, 43, 121, 22);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("SĐT");
         jPanel2.add(jLabel9);
         jLabel9.setBounds(619, 83, 50, 22);
-        jPanel2.add(jTextField7);
-        jTextField7.setBounds(688, 85, 180, 22);
+        jPanel2.add(txtsdT);
+        txtsdT.setBounds(688, 85, 180, 22);
 
-        buttonGroupBaoHiem.add(jRadioButton3);
-        jRadioButton3.setText("Có");
-        jPanel2.add(jRadioButton3);
-        jRadioButton3.setBounds(120, 230, 43, 25);
+        buttonGroupBaoHiem.add(rdoCo);
+        rdoCo.setText("Có");
+        jPanel2.add(rdoCo);
+        rdoCo.setBounds(120, 230, 43, 25);
 
-        buttonGroupBaoHiem.add(jRadioButton4);
-        jRadioButton4.setText("Không");
-        jPanel2.add(jRadioButton4);
-        jRadioButton4.setBounds(200, 230, 63, 25);
+        buttonGroupBaoHiem.add(rdoKhong);
+        rdoKhong.setText("Không");
+        jPanel2.add(rdoKhong);
+        rdoKhong.setBounds(200, 230, 63, 25);
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 908, 280));
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblBenhNhan.setBackground(new java.awt.Color(204, 255, 255));
+        tblBenhNhan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã BN", "Họ Tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Bảo hiểm", "SDT"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblBenhNhan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBenhNhanMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblBenhNhan);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 910, 340));
 
-        jButton4.setText("Thoát");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnThoatActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 660, 110, 50));
+        getContentPane().add(btnThoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 660, 110, 50));
 
-        jButton3.setText("Xóa");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 660, 110, 50));
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 660, 110, 50));
 
-        jButton2.setText("Sửa");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 110, 50));
+        btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 110, 50));
 
-        jButton1.setText("Thêm");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 660, 110, 50));
+        btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 660, 110, 50));
 
-        jButton5.setText("Nhập Mới");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 100, 50));
+        btnNhapMoi.setText("Nhập Mới");
+        btnNhapMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhapMoiActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnNhapMoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 100, 50));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/vector-MAY-2020-112.jpg"))); // NOI18N
@@ -189,9 +233,35 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void btnNhapMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapMoiActionPerformed
+        clearForm();
+    }//GEN-LAST:event_btnNhapMoiActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        if(checkform()){
+           insert(); 
+        }     
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        update();
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        delete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tblBenhNhanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBenhNhanMouseClicked
+        if(evt.getClickCount() == 2){
+            this.row = tblBenhNhan.getSelectedRow();
+            this.edit(); 
+            getForm();
+        }
+    }//GEN-LAST:event_tblBenhNhanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -239,13 +309,13 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNhapMoi;
+    private javax.swing.JButton btnSua;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnThoat;
+    private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup buttonGroupBaoHiem;
     private javax.swing.ButtonGroup buttonGroupGioiTinh;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -256,18 +326,212 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JRadioButton rdoCo;
+    private javax.swing.JRadioButton rdoKhong;
+    private javax.swing.JRadioButton rdoNam;
+    private javax.swing.JRadioButton rdoNu;
+    private javax.swing.JTable tblBenhNhan;
+    private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txthoTen;
+    private javax.swing.JTextField txtmaBN;
+    private javax.swing.JTextField txtngaySinh;
+    private javax.swing.JTextField txtsdT;
+    private javax.swing.JTextField txttuoi;
     // End of variables declaration//GEN-END:variables
+    BenhNhanDAO dao = new BenhNhanDAO();
+    int row = -1;
+
+    void init() {
+        this.setLocationRelativeTo(null);
+        this.row = -1;
+        this.updateStatus();
+        this.fillTable();
+    }
+
+    void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) tblBenhNhan.getModel();
+        model.setRowCount(0);//xóa sạch dữ liệu bên trong form bảng
+        try {
+            List<Benhnhan> list = dao.selectAll();
+            for (Benhnhan bn : list) {
+                Object[] row = {
+                    bn.getMaBN(),
+                    bn.getHoTen(),
+                    bn.getNgaySinh(),
+                    bn.getGioiTinh() ? "Nam" : "Nữ",
+                    bn.getDiaChi(),
+                    bn.getBaoHiem() ? "Có" : "Không",
+                    bn.getSdT()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy xuất dữ liệu");
+        }
+    }
+
+    Benhnhan getForm() {
+        Benhnhan bn = new Benhnhan();
+        bn.setMaBN(txtmaBN.getText());
+        bn.setHoTen(txthoTen.getText());
+        bn.setNgaySinh(txtngaySinh.getText());
+        bn.setGioiTinh(rdoNam.isSelected());
+        bn.setDiaChi(txtDiaChi.getText());
+        bn.setBaoHiem(rdoCo.isSelected());
+        bn.setSdT(Integer.parseInt(txtsdT.getText()));
+        return bn;
+    }
+
+    void setForm(Benhnhan bn) {
+        txtmaBN.setText(bn.getMaBN());
+        txthoTen.setText(bn.getHoTen());
+        txtngaySinh.setText(bn.getNgaySinh());
+        rdoNam.setSelected(bn.getGioiTinh());
+        rdoNu.setSelected(!bn.getGioiTinh());
+        txtDiaChi.setText(bn.getDiaChi());
+        rdoCo.setSelected(bn.getBaoHiem());
+        rdoKhong.setSelected(!bn.getBaoHiem());
+        txtsdT.setText(String.valueOf(bn.getSdT()));
+        txttuoi.setText(String.valueOf(tuoi()));
+    }
+
+    void clearForm() {//btnMoi
+        txtmaBN.setText("");
+        txthoTen.setText("");
+        txtngaySinh.setText("");
+        buttonGroupGioiTinh.clearSelection();
+        txtDiaChi.setText("");
+        buttonGroupBaoHiem.clearSelection();
+        txtsdT.setText("");
+        this.row = -1;
+        this.updateStatus();
+    }
+
+    void edit() {//tblBenhNhan
+        String mabn = (String) tblBenhNhan.getValueAt(this.row, 0);
+        Benhnhan nv = dao.selectById(mabn);
+        this.row = -1;
+        this.setForm(nv);
+        this.updateStatus();
+    }
+
+    void updateStatus() {
+        boolean edit = (this.row >= 0);
+//        boolean first = (this.row == 0);
+//        boolean last = (this.row == tblNhanVien.getRowCount() - 1);
+        //trạng thái form
+        txtmaBN.setEditable(!edit);
+        btnThem.setEnabled(!edit);
+        btnSua.setEnabled(edit);
+        btnXoa.setEnabled(edit);
+
+        // trạng thái điều hướng
+//        btnFirst.setEnabled(edit && !first);
+//        btnBack.setEnabled(edit && !first);
+//        btnNext.setEnabled(edit && !last);
+//        btnLast.setEnabled(edit && !last);
+    }
+     
+    void insert() {
+        Benhnhan bn = getForm();
+        try {
+            dao.insert(bn);
+            this.fillTable();
+            this.clearForm();
+            MsgBox.alert(this, "thêm bệnh nhân thành công!");
+        } catch (Exception e) {
+            MsgBox.alert(this, "thêm bệnh nhân thất bại!!!");
+        }
+    }
+
+    void update() {
+        Benhnhan bn = getForm();
+        try {
+            dao.update(bn);
+            this.fillTable();
+            this.clearForm();
+            MsgBox.alert(this, "cập nhật bệnh nhân thành công!");
+        } catch (Exception e) {
+            MsgBox.alert(this, "cập nhật bệnh nhân thất bại!!!");
+        }
+    }
+
+    void delete() {
+        if (!Auth.isManage()) {
+            MsgBox.alert(this, "Bạn không có quyền xóa");
+        } else {
+            String mabn = txtmaBN.getText();
+            //không đc xóa chính nhân viên hiện tại
+//            if (mabn.equals(Auth.user.get())) {
+//                MsgBox.alert(this, "bạn không thể xóa chính bạn!");
+            MsgBox.confirm(this, "Bạn có thật sự muốn xóa bệnh nhân này?");
+            try {
+                dao.delete(mabn);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "xóa bệnh nhân thành công!");
+            } catch (Exception e) {
+                MsgBox.alert(this, "xóa bệnh nhân thất bại");
+            }
+        }
+    }
+    
+    boolean checkform(){
+        String date = "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$"; 
+        if(txtmaBN.getText().length() == 0) {
+            MsgBox.alert(this, "không để trống mã bệnh nhân");
+            return false;
+        }
+        
+        if(txthoTen.getText().length() == 0) {
+            MsgBox.alert(this, "không để trống họ tên");
+            return false;
+        }
+        
+        if(rdoNam.isSelected() == false && rdoNu.isSelected() == false){
+            MsgBox.alert(this, "hãy chọn giới tính");
+            return false;
+        }
+        
+        if(txtngaySinh.getText().length() == 0) {
+            MsgBox.alert(this, "không để trống ngày sinh");
+            return false;
+        }
+        
+        if(txtngaySinh.getText().equals(date)) {
+            MsgBox.alert(this, "không đúng định dạng ngày sinh!!! vd 01/01/1996");
+            return false;
+        }
+        
+        if(txtDiaChi.getText().length() == 0) {
+            MsgBox.alert(this, "không để trống địa chỉ");
+            return false;
+        }
+        
+        if(rdoCo.isSelected() == false && rdoKhong.isSelected() == false){
+            MsgBox.alert(this, "hãy chọn bảo hiểm");
+            return false;
+        }
+        
+        if(txtsdT.getText().length() == 0) {
+            MsgBox.alert(this, "không để trống SDT");
+            return false;
+        }
+                 
+        return true;
+    }
+    
+    int tuoi(){
+        int namNgaySinh = 0;
+        Benhnhan list = dao.selectById(txtmaBN.getText());
+        String ngaysinh=list.getNgaySinh();
+        String[] parts = ngaysinh.split("-");
+        String part1 = parts[0];
+        namNgaySinh=Integer.parseInt(String.valueOf(part1));
+        int namHienTai = Calendar.getInstance().get(Calendar.YEAR);
+        int tuoi=namHienTai-namNgaySinh;
+        return tuoi;
+    }
 }

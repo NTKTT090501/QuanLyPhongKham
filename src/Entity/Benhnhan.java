@@ -12,13 +12,21 @@ import java.util.Date;
  * @author HA NAM
  */
 public class Benhnhan {
-    String maBN;
-    String tenBN;
-    Date ngaySinh;
+    String maBN; 
+    String hoTen;
+    String ngaySinh;
     boolean gioiTinh;
-    String SDT;
-    String Diachi;
+    String diaChi;
     boolean baoHiem;
+    int sdT;
+
+    public int getSdT() {
+        return sdT;
+    }
+
+    public void setSdT(int sdT) {
+        this.sdT = sdT;
+    }
 
     public String getMaBN() {
         return maBN;
@@ -28,23 +36,23 @@ public class Benhnhan {
         this.maBN = maBN;
     }
 
-    public String getTenBN() {
-        return tenBN;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public void setTenBN(String tenBN) {
-        this.tenBN = tenBN;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
-    public Date getTuoi() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setTuoi(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
-    public boolean isGioiTinh() {
+    public boolean getGioiTinh() {
         return gioiTinh;
     }
 
@@ -52,20 +60,12 @@ public class Benhnhan {
         this.gioiTinh = gioiTinh;
     }
 
-    public String getSDT() {
-        return SDT;
+    public String getDiaChi() {
+        return diaChi;
     }
 
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
-    }
-
-    public String getDiachi() {
-        return Diachi;
-    }
-
-    public void setDiachi(String Diachi) {
-        this.Diachi = Diachi;
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
     }
 
     public boolean getBaoHiem() {
@@ -75,5 +75,6 @@ public class Benhnhan {
     public void setBaoHiem(boolean baoHiem) {
         this.baoHiem = baoHiem;
     }
+    
     
 }

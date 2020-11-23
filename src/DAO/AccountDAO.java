@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Entity.TaiKhoan;
+import Entity.Account;
 import Utilities.XJdbc;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -15,16 +15,17 @@ import java.util.List;
  *
  * @author HA NAM
  */
-public class TaiKhoanDAO extends EduSysDAO<TaiKhoan, String>{
-    String Select_By_Id_Sql = "select * from taikhoan where tendn = ?";
-    String Select_All_Sql = "select * from taikhoan";
+public class AccountDAO extends clinicMN<Account, String>{
+    String Select_By_Id_Sql = "select * from Account where username = ?";
+    String Select_All_Sql = "select * from Account";
+
     @Override
-    public void insert(TaiKhoan entity) {
+    public void insert(Account entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(TaiKhoan entity) {
+    public void update(Account entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -34,13 +35,13 @@ public class TaiKhoanDAO extends EduSysDAO<TaiKhoan, String>{
     }
 
     @Override
-    public List<TaiKhoan> selectAll() {
+    public List<Account> selectAll() {
         return this.selectBySql(Select_All_Sql); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public TaiKhoan selectById(String id) {
-        List<TaiKhoan> list = this.selectBySql(Select_By_Id_Sql, id);
+    public Account selectById(String id) {
+        List<Account> list = this.selectBySql(Select_By_Id_Sql, id);
         if (list.isEmpty()) {
             return null;
         }
@@ -48,14 +49,14 @@ public class TaiKhoanDAO extends EduSysDAO<TaiKhoan, String>{
     }
 
     @Override
-    protected List<TaiKhoan> selectBySql(String sql, Object... args) {
-         List<TaiKhoan> list = new ArrayList<>();
+    protected List<Account> selectBySql(String sql, Object... args) {
+         List<Account> list = new ArrayList<>();
         try {
             ResultSet rs = XJdbc.query(sql, args);
             while (rs.next()) {
-                TaiKhoan entity = new TaiKhoan();
-                entity.setTenDN(rs.getString("TenDN"));
-                entity.setPass(rs.getString("MatKhau"));
+                Account entity = new Account();
+                entity.setUserName(rs.getString("username"));
+                entity.setPass(rs.getString("password"));
                 entity.setVaiTro(rs.getBoolean("VaiTro"));               
                 list.add(entity);
             }
@@ -65,5 +66,5 @@ public class TaiKhoanDAO extends EduSysDAO<TaiKhoan, String>{
             throw new RuntimeException(e);
         } //To change body of generated methods, choose Tools | Templates.
     }
-    
+   
 }
