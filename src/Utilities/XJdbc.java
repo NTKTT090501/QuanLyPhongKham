@@ -47,7 +47,7 @@ public class XJdbc {
         }
 
     }
-
+     // Truy vấn dữ liệu trong SQL
     public static ResultSet query(String sql, Object... args) {
         try {
             PreparedStatement stmt = XJdbc.getStmt(sql, args);
@@ -57,7 +57,7 @@ public class XJdbc {
         }
 
     }
-
+     // Truy vấn dữ liệu trong SQL
     public static Object value(String sql, Object... args) {
         try {
             ResultSet rs = XJdbc.query(sql, args);
@@ -70,7 +70,7 @@ public class XJdbc {
             throw new RuntimeException(e);
         }
     }
-
+    // Thao tác thay đổi / cập nhật dữ liệu trong SQL
     public static int update(String sql, Object... args) {
         try {
             PreparedStatement stmt = XJdbc.getStmt(sql, args);

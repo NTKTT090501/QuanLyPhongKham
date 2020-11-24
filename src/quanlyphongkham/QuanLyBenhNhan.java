@@ -380,7 +380,7 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
         bn.setGioiTinh(rdoNam.isSelected());
         bn.setDiaChi(txtDiaChi.getText());
         bn.setBaoHiem(rdoCo.isSelected());
-        bn.setSdT(Integer.parseInt(txtsdT.getText()));
+        bn.setSdT(txtsdT.getText());
         return bn;
     }
 

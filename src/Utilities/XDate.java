@@ -16,7 +16,6 @@ import java.util.Date;
 public class XDate {
 
     static SimpleDateFormat formater = new SimpleDateFormat();
-
     /**
      * Chuyển đổi String sang Date
      *

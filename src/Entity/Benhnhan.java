@@ -18,13 +18,13 @@ public class Benhnhan {
     boolean gioiTinh;
     String diaChi;
     boolean baoHiem;
-    int sdT;
+    String sdT;
 
-    public int getSdT() {
+    public String getSdT() {
         return sdT;
     }
 
-    public void setSdT(int sdT) {
+    public void setSdT(String sdT) {
         this.sdT = sdT;
     }
 

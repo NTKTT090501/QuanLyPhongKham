@@ -9,33 +9,46 @@ import Entity.BacSi;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import util.Xjdbc;
+import Utilities.XJdbc;
 
 /**
  *
  * @author ADMIN
  */
-public class BacSiDAO extends PlusDAO<BacSi, String>{
+public class BacSiDAO extends clinicMN<BacSi, String>{
     String INSERT_SQL = "insert into BacSi(MaBS,TenBS, Chuyennganh, NgaySinh, DiaChi, SDT,GioiTinh) values(?,?,?,?,?,?,?)";
     String UPDATE_SQL = "update BacSi set TenBS=?, Chuyennganh=?, NgaySinh=? ,DiaChi=? ,SDT=? ,GioiTinh=? where MaBS=?";
     String DELETE_SQL = "delete from BacSi where MaBS=?";
     String SELECT_ALL_SQL = "select * from BacSi";
     String SELECT_BY_ID_SQL = "select * from BacSi where MaBS=?";
-    String TinhTuoi= "SELECT DATEDIFF(yy, ?, GETDATE()) from bacsi";
     
     @Override
     public void insert(BacSi entity) {
-        Xjdbc.update(INSERT_SQL,entity.getMaBS(),entity.getTenBS(),entity.getChuyennganh(),entity.getNgaysinh(),entity.getDiachi(),entity.getSDT(),entity.getGioitinh());
+        XJdbc.update(INSERT_SQL,
+                entity.getMaBS(),
+                entity.getTenBS(),
+                entity.getChuyennganh(),
+                entity.getNgaysinh(),
+                entity.getDiachi(),
+                entity.getSDT(),
+                entity.getGioitinh());
     }
 
     @Override
     public void update(BacSi entity) {
-       Xjdbc.update(UPDATE_SQL,entity.getTenBS(),entity.getChuyennganh(),entity.getNgaysinh(),entity.getDiachi(),entity.getSDT(),entity.getGioitinh(),entity.getMaBS());
+       XJdbc.update(UPDATE_SQL,
+               entity.getTenBS(),
+               entity.getChuyennganh(),
+               entity.getNgaysinh(),
+               entity.getDiachi(),
+               entity.getSDT(),
+               entity.getGioitinh(),
+               entity.getMaBS());
     }
 
     @Override
     public void delete(String id) {
-         Xjdbc.update(DELETE_SQL, id);
+         XJdbc.update(DELETE_SQL, id);
     }
 
     @Override
@@ -46,17 +59,12 @@ public class BacSiDAO extends PlusDAO<BacSi, String>{
         }
         return list.get(0);
     }
-
-    @Override
-    public List<BacSi> selectALL() {
-       return this.selectBySql(SELECT_ALL_SQL);
-    }
-
+    
     @Override
     protected List<BacSi> selectBySql(String sql, Object... args) {
-         List<BacSi> list = new ArrayList<BacSi>();
-       try{
-           ResultSet rs = Xjdbc.query(sql, args);
+        List<BacSi> list = new ArrayList<BacSi>();
+        try{
+           ResultSet rs = XJdbc.query(sql, args);
            while(rs.next()){
                BacSi entity = new BacSi();
                entity.setMaBS(rs.getString("MaBS"));
@@ -65,7 +73,7 @@ public class BacSiDAO extends PlusDAO<BacSi, String>{
                entity.setNgaysinh(rs.getString("NgaySinh"));
                entity.setDiachi(rs.getString("DiaChi"));
                entity.setSDT(rs.getString("SDT"));
-               entity.setGioitinh(rs.getString("GioiTinh"));
+               entity.setGioitinh(rs.getBoolean("GioiTinh"));
                list.add(entity);
            }
            rs.getStatement().getConnection().close();
@@ -73,6 +81,10 @@ public class BacSiDAO extends PlusDAO<BacSi, String>{
        }catch(Exception e){
            throw new RuntimeException(e);
        }
+    } 
+
+    @Override
+    public List<BacSi> selectAll() {
+        return this.selectBySql(SELECT_ALL_SQL);//To change body of generated methods, choose Tools | Templates.
     }
-    
 }

@@ -17,6 +17,6 @@ public class PhieuKham {
     String MaBS;
     String MotaBenh;
     String MaDT;
-    Date Ngaykham;
+    String Ngaykham;
     double Thanhtien;
 }

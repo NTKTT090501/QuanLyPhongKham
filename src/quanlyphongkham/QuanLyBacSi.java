@@ -11,9 +11,9 @@ import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import util.Auth;
-import util.MsgBox;
-import util.Xjdbc;
+import Utilities.Auth;
+import Utilities.MsgBox;
+import Utilities.XJdbc;
 
 /**
  *
@@ -350,13 +350,12 @@ public class QuanLyBacSi extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
  BacSiDAO dao = new BacSiDAO();
     int row = -1;
-public int sum=0;
-
+    
     void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblBang.getModel();
         model.setRowCount(0);
         try {
-            List<BacSi> list = dao.selectALL();
+            List<BacSi> list = dao.selectAll();
             for (BacSi bs : list) {
                 Object[] row = {
                     bs.getMaBS(),
@@ -376,35 +375,26 @@ public int sum=0;
     }
 
     BacSi getForm() {
-        BacSi nv = new BacSi();
-        nv.setMaBS(txtMaBS.getText());
-        nv.setTenBS(txtTenBS.getText());
-        nv.setChuyennganh(txtChuyenNganh.getText());
-        if (rdoNam.isSelected()) {
-            nv.setGioitinh(rdoNam.getText());
-        }
-        if (rdoNu.isSelected()) {
-            nv.setGioitinh(rdoNu.getText());
-        }
-        nv.setDiachi(txtGhiChu.getText());
-        nv.setNgaysinh(txtNgaySinh.getText());
-        nv.setSDT(txtSDT.getText());
-
-        return nv;
+        BacSi bs = new BacSi();
+        bs.setMaBS(txtMaBS.getText());
+        bs.setTenBS(txtTenBS.getText());
+        bs.setChuyennganh(txtChuyenNganh.getText());
+        bs.setGioitinh(rdoNam.isSelected());
+        bs.setGioitinh(!rdoNu.isSelected());
+        bs.setDiachi(txtGhiChu.getText());
+        bs.setNgaysinh(txtNgaySinh.getText());
+        bs.setSDT(txtSDT.getText());
+        return bs;
     }
 
-    void setForm(BacSi nv) {
-        txtMaBS.setText(nv.getMaBS());
-        txtTenBS.setText(nv.getTenBS());
-        txtChuyenNganh.setText(nv.getChuyennganh());
-        txtGhiChu.setText(nv.getDiachi());
-        if (nv.getGioitinh().equalsIgnoreCase("Nam")) {
-            rdoNam.setSelected(true);
-        } else if (nv.getGioitinh().equalsIgnoreCase("Nữ")) {
-            rdoNu.setSelected(true);
-        }
-        txtSDT.setText(nv.getSDT());
-        txtNgaySinh.setText(nv.getNgaysinh());
+    void setForm(BacSi bs) {
+        txtMaBS.setText(bs.getMaBS());
+        txtTenBS.setText(bs.getTenBS());
+        txtChuyenNganh.setText(bs.getChuyennganh());
+        txtGhiChu.setText(bs.getDiachi());
+        rdoNam.setSelected(bs.getGioitinh());
+        txtSDT.setText(bs.getSDT());
+        txtNgaySinh.setText(bs.getNgaysinh());
         txtTuoi.setText(String.valueOf(TinhTuoi()));
    }
 
@@ -447,15 +437,13 @@ public int sum=0;
     }
 
     void delete() {
-        if (!Auth.isManager()) {
+        if (!Auth.isManage()) {
             MsgBox.alert(this, "Bạn không có quyền xóa bác sĩ!");
-        } else {
-            String manv = txtMaBS.getText();
-            if (manv.equals(Auth.user.getVaiTro())) {
-                MsgBox.alert(this, "Bạn không được xóa chính bạn!");
-            } else if (MsgBox.confirm(this, "Bạn thực sự muốn xóa bác sĩ này?")) {
+        } else {          
+            MsgBox.confirm(this, "Bạn thực sự muốn xóa bác sĩ này?");
+            String mabs = txtMaBS.getText();
                 try {
-                    dao.delete(manv);
+                    dao.delete(mabs);
                     this.fillTable();
                     this.clearForm();
                     MsgBox.alert(this, "Xóa thành công!");
@@ -466,7 +454,7 @@ public int sum=0;
                 }
             }
         }
-    }
+    
 
     void clearForm() {
         txtChuyenNganh.setText("");
@@ -476,12 +464,12 @@ public int sum=0;
         txtSDT.setText("");
         txtTenBS.setText("");
         txtTuoi.setText("");
-        rdoNam.setSelected(true);
+        buttonGroup1.clearSelection();
     }
 
     boolean checkform() {
         //String dateformat="^\d{4}-\d{2}-\d{2}$";
-        String regex = "^\\d{4}-\\d{2}-\\d{2}$";
+        String regex = "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$";
         if (txtMaBS.getText().equalsIgnoreCase("")) {
             MsgBox.alert(this, "Mã bác sĩ không được trống!");
             return false;
@@ -508,16 +496,17 @@ public int sum=0;
     }
     
     int TinhTuoi(){
-        int tuoi=0;
-        int namHienTai=0,namNgaySinh=0;
-        BacSiDAO dao=new BacSiDAO();
+        int tuoi = 0;
+        int namHienTai=0, namNgaySinh=0;      
         BacSi list=dao.selectById(txtMaBS.getText());
         String ngaysinhh=list.getNgaysinh();
-        String par[]=ngaysinhh.split("-");
-        String par1=par[0];
-        namNgaySinh=Integer.parseInt(par1);
+        String part[]=ngaysinhh.split("-");
+        String part1=part[0];
+        namNgaySinh=Integer.parseInt(part1);
         namHienTai=Calendar.getInstance().get(Calendar.YEAR);
         tuoi=namHienTai-namNgaySinh;
         return tuoi;
     }
 }
+
+

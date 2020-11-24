@@ -82,7 +82,7 @@ public class BenhNhanDAO extends clinicMN<Benhnhan, String> {
                 entity.setGioiTinh(rs.getBoolean("Gioitinh"));
                 entity.setDiaChi(rs.getString("Diachi"));
                 entity.setBaoHiem(rs.getBoolean("Baohiem"));
-                entity.setSdT(rs.getInt("sdt"));
+                entity.setSdT(rs.getString("sdt"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();

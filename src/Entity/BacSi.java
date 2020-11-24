@@ -5,7 +5,7 @@
  */
 package Entity;
 
-import java.util.Date;
+
 
 /**
  *
@@ -14,13 +14,12 @@ import java.util.Date;
 public class BacSi {
     String MaBS;
     String TenBS;
-    boolean Gioitinh;
-    String SDT;
-    Date Ngaysinh;
-    String Diachi;
     String Chuyennganh;
+    String Ngaysinh;   
+    String SDT;
+    boolean Gioitinh;
+    String diaChi;
  
-
     public String getMaBS() {
         return MaBS;
     }
@@ -53,20 +52,20 @@ public class BacSi {
         this.SDT = SDT;
     }
 
-    public Date getNgaysinh() {
+    public String getNgaysinh() {
         return Ngaysinh;
     }
 
-    public void setNgaysinh(Date Ngaysinh) {
+    public void setNgaysinh(String Ngaysinh) {
         this.Ngaysinh = Ngaysinh;
     }
 
     public String getDiachi() {
-        return Diachi;
+        return diaChi;
     }
 
-    public void setDiachi(String Diachi) {
-        this.Diachi = Diachi;
+    public void setDiachi(String diaChi) {
+        this.diaChi = diaChi;
     }
 
     public String getChuyennganh() {
