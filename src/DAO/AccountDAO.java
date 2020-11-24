@@ -5,66 +5,69 @@
  */
 package DAO;
 
+import util.Xjdbc;
 import Entity.Account;
-import Utilities.XJdbc;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author HA NAM
+ * @author ADMIN
  */
-public class AccountDAO extends clinicMN<Account, String>{
-    String Select_By_Id_Sql = "select * from Account where username = ?";
-    String Select_All_Sql = "select * from Account";
+public class AccountDAO extends PlusDAO<Account, String>{
+     String INSERT_SQL = "insert into Account(UserName,Password) values(?,?)";
+    String UPDATE_SQL = "update Account set Password=? where UserName=?";
+    String DELETE_SQL = "delete from Account where UserName=?";
+    String SELECT_ALL_SQL = "select * from Account";
+    String SELECT_BY_ID_SQL = "select * from Account where UserName=?";
 
     @Override
     public void insert(Account entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Xjdbc.update(INSERT_SQL,entity.getUserName(),entity.getPassword());
     }
 
     @Override
     public void update(Account entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Xjdbc.update(UPDATE_SQL,entity.getPassword(),entity.getUserName());
     }
 
     @Override
-    public void delete(String key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(String id) {
+       Xjdbc.update(DELETE_SQL, id);
     }
 
     @Override
-    public List<Account> selectAll() {
-        return this.selectBySql(Select_All_Sql); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Account selectById(String id) {
-        List<Account> list = this.selectBySql(Select_By_Id_Sql, id);
-        if (list.isEmpty()) {
+    public Account selectById(String UserName) {
+     List<Account> list = this.selectBySql(SELECT_BY_ID_SQL, UserName);
+        if(list.isEmpty()){
             return null;
         }
-        return list.get(0); //To change body of generated methods, choose Tools | Templates.
+        return list.get(0);
+    }
+    
+
+    @Override
+    public List<Account> selectALL() {
+        return this.selectBySql(SELECT_ALL_SQL);
     }
 
     @Override
     protected List<Account> selectBySql(String sql, Object... args) {
-         List<Account> list = new ArrayList<>();
-        try {
-            ResultSet rs = XJdbc.query(sql, args);
-            while (rs.next()) {
-                Account entity = new Account();
-                entity.setUserName(rs.getString("username"));
-                entity.setPass(rs.getString("password"));
-                entity.setVaiTro(rs.getBoolean("VaiTro"));               
-                list.add(entity);
-            }
-            rs.getStatement().getConnection().close();
-            return list;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } //To change body of generated methods, choose Tools | Templates.
+        List<Account> list = new ArrayList<Account>();
+       try{
+           ResultSet rs = Xjdbc.query(sql, args);
+           while(rs.next()){
+               Account entity = new Account();
+               entity.setUserName(rs.getString("Username"));
+               entity.setPassword(rs.getString("Password"));
+               entity.setVaiTro(rs.getBoolean("vaitro"));
+               list.add(entity);
+           }
+           rs.getStatement().getConnection().close();
+           return list;
+       }catch(Exception e){
+           throw new RuntimeException(e);
+       }
     }
-   
 }

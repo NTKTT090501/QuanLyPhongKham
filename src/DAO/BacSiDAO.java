@@ -21,7 +21,7 @@ public class BacSiDAO extends PlusDAO<BacSi, String>{
     String DELETE_SQL = "delete from BacSi where MaBS=?";
     String SELECT_ALL_SQL = "select * from BacSi";
     String SELECT_BY_ID_SQL = "select * from BacSi where MaBS=?";
-    String TinhTuoi= "SELECT DATEDIFF(yy, ?, GETDATE()) from bacsi";
+    //String TinhTuoi= "SELECT DATEDIFF(yy, ?, GETDATE()) from bacsi";
     
     @Override
     public void insert(BacSi entity) {

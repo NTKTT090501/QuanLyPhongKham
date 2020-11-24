@@ -141,6 +141,7 @@ public class QuanLyBacSi extends javax.swing.JDialog {
         jLabel8.setBounds(619, 41, 35, 22);
 
         txtTuoi.setEditable(false);
+        txtTuoi.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jPanel2.add(txtTuoi);
         txtTuoi.setBounds(685, 43, 50, 30);
 
@@ -159,7 +160,6 @@ public class QuanLyBacSi extends javax.swing.JDialog {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 908, 280));
 
-        tblBang.setBackground(new java.awt.Color(204, 255, 255));
         tblBang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         tblBang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -350,7 +350,7 @@ public class QuanLyBacSi extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
  BacSiDAO dao = new BacSiDAO();
     int row = -1;
-public int sum=0;
+
 
     void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblBang.getModel();

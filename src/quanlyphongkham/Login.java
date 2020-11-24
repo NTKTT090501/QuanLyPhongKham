@@ -5,10 +5,10 @@
  */
 package quanlyphongkham;
 
-import DAO.AccountDAO;
 import Entity.Account;
-import Utilities.Auth;
-import Utilities.MsgBox;
+import DAO.AccountDAO;
+import util.Auth;
+import util.MsgBox;
 
 /**
  *
@@ -39,10 +39,10 @@ public class Login extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         btnExit = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
         BackGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -51,7 +51,7 @@ public class Login extends javax.swing.JDialog {
         jPanel1.setLayout(null);
 
         container.setBackground(new java.awt.Color(204, 204, 204));
-        container.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        container.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         container.setOpaque(false);
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -79,6 +79,11 @@ public class Login extends javax.swing.JDialog {
         });
 
         btnLogin.setText("Đăng Nhập");
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLoginMouseEntered(evt);
+            }
+        });
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -99,15 +104,15 @@ public class Login extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
                         .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                             .addGroup(containerLayout.createSequentialGroup()
                                 .addComponent(btnLogin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnExit))
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPassword))
                         .addGap(57, 57, 57))))
         );
 
@@ -122,20 +127,20 @@ public class Login extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(txtPassword))
+                .addGap(33, 33, 33)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         containerLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnExit, btnLogin});
 
         jPanel1.add(container);
-        container.setBounds(200, 70, 430, 310);
+        container.setBounds(210, 80, 410, 295);
 
         BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/LoginBackground2.jpg"))); // NOI18N
         jPanel1.add(BackGround);
@@ -156,13 +161,19 @@ public class Login extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
         dangNhap();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        Thoat();
+this.dispose();     
+//ketThuc();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoginMouseEntered
 
     /**
      * @param args the command line arguments
@@ -216,27 +227,27 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-    AccountDAO dao = new AccountDAO();
-    void dangNhap(){
-        String tenDN = txtUsername.getText();
-        String pass = txtPassword.getText();
-        Account tk = dao.selectById(tenDN);
-         if (tk == null) {
-            MsgBox.alert(this, "không bỏ trống tenDN va matkhau");
-        } else if (!pass.equals(tk.getPass())) {
-            MsgBox.alert(this, "Sai mật khẩu!!!");
-        } else {
-            Auth.user = tk;
-            this.dispose();
-        }
+ AccountDAO dao = new AccountDAO();
+    void dangNhap(){    
+    String taikhoan=txtUsername.getText();
+    String matKhau= new String(txtPassword.getPassword());
+    Account account=dao.selectById(taikhoan);
+    if(account==null){
+        MsgBox.alert(this,"Sai tên đăng nhập");
+    }else if(!matKhau.equals(account.getPassword())){
+        MsgBox.alert(this,"Sai mật khẩu");
+        
+    }else{
+        Auth.user =account;
+        this.dispose();
     }
-    
-    void Thoat(){
-        if(MsgBox.confirm(this, "Bạn có muốn thoát")){
-            System.exit(0);
-        }
+}
+void ketThuc(){
+    if(MsgBox.confirm(this,"Bạn muốn kết thúc ứng dụng?")){
+        System.exit(0);
     }
+}
 }

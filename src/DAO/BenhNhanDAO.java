@@ -6,7 +6,7 @@
 package DAO;
 
 import Entity.Benhnhan;
-import Utilities.XJdbc;
+import util.Xjdbc;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author HA NAM
  */
-public class BenhNhanDAO extends clinicMN<Benhnhan, String> {
+public class BenhNhanDAO extends PlusDAO<Benhnhan, String> {
 
     String Insert_Sql = "INSERT INTO BenhNhan (MaBN, Hoten, ngaysinh, Gioitinh, Diachi, Baohiem, sdt)\n"
             + "VALUES (?,?,?,?,?,?,?)";
@@ -28,37 +28,33 @@ public class BenhNhanDAO extends clinicMN<Benhnhan, String> {
 
     @Override
     public void insert(Benhnhan entity) {
-        XJdbc.update(Insert_Sql,
+        Xjdbc.update(Insert_Sql,
                 entity.getMaBN(),
-                entity.getHoTen(),
+                entity.getTenBN(),
                 entity.getNgaySinh(),
                 entity.getGioiTinh(),
-                entity.getDiaChi(),
-                entity.getBaoHiem(),
-                entity.getSdT());
+                entity.getDiachi(),
+                entity.isBaoHiem(),
+                entity.getSDT());
     }
 
     @Override
     public void update(Benhnhan entity) {
-        XJdbc.update(Update_Sql,
-                entity.getHoTen(),
+        Xjdbc.update(Update_Sql,
+                entity.getTenBN(),
                 entity.getNgaySinh(),
                 entity.getGioiTinh(),
-                entity.getDiaChi(),
-                entity.getBaoHiem(),
-                entity.getSdT(),
+                entity.getDiachi(),
+                entity.isBaoHiem(),
+                entity.getSDT(),
                 entity.getMaBN());
     }
 
     @Override
     public void delete(String id) {
-        XJdbc.update(Delete_Sql, id);
+        Xjdbc.update(Delete_Sql, id);
     }
 
-    @Override
-    public List<Benhnhan> selectAll() {
-        return this.selectBySql(Select_All_Sql);
-    }
 
     @Override
     public Benhnhan selectById(String id) {
@@ -73,16 +69,16 @@ public class BenhNhanDAO extends clinicMN<Benhnhan, String> {
     protected List<Benhnhan> selectBySql(String sql, Object... args) {
         List<Benhnhan> list = new ArrayList<>();
         try {
-            ResultSet rs = XJdbc.query(sql, args);
+            ResultSet rs = Xjdbc.query(sql, args);
             while (rs.next()) {
                 Benhnhan entity = new Benhnhan();
                 entity.setMaBN(rs.getString("MaBN"));
-                entity.setHoTen(rs.getString("HoTen"));
+                entity.setTenBN(rs.getString("Hoten"));
                 entity.setNgaySinh(rs.getString("ngaysinh"));
-                entity.setGioiTinh(rs.getBoolean("Gioitinh"));
-                entity.setDiaChi(rs.getString("Diachi"));
+                entity.setGioiTinh(rs.getString("Gioitinh"));
+                entity.setDiachi(rs.getString("Diachi"));
                 entity.setBaoHiem(rs.getBoolean("Baohiem"));
-                entity.setSdT(rs.getInt("sdt"));
+                entity.setSDT(rs.getString("sdt"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();
@@ -91,6 +87,9 @@ public class BenhNhanDAO extends clinicMN<Benhnhan, String> {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<Benhnhan> selectALL() {
+        return this.selectBySql(Select_All_Sql);
+    }
 }
-
-

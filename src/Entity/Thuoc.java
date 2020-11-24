@@ -12,40 +12,68 @@ import java.util.Date;
  * @author HA NAM
  */
 public class Thuoc {
-    String MaThuoc;
-    String Tenthuoc;
-    String DVT;
-    Date HSD;
+    private String MaThuoc;
+    private String Tenthuoc;
+    private String DVT;
+    private String HSD;
 
+    /**
+     * @return the MaThuoc
+     */
     public String getMaThuoc() {
         return MaThuoc;
     }
 
+    /**
+     * @param MaThuoc the MaThuoc to set
+     */
     public void setMaThuoc(String MaThuoc) {
         this.MaThuoc = MaThuoc;
     }
 
+    /**
+     * @return the Tenthuoc
+     */
     public String getTenthuoc() {
         return Tenthuoc;
     }
 
+    /**
+     * @param Tenthuoc the Tenthuoc to set
+     */
     public void setTenthuoc(String Tenthuoc) {
         this.Tenthuoc = Tenthuoc;
     }
 
+    /**
+     * @return the DVT
+     */
     public String getDVT() {
         return DVT;
     }
 
+    /**
+     * @param DVT the DVT to set
+     */
     public void setDVT(String DVT) {
         this.DVT = DVT;
     }
 
-    public Date getHSD() {
+    /**
+     * @return the HSD
+     */
+    public String getHSD() {
         return HSD;
     }
 
-    public void setHSD(Date HSD) {
+    /**
+     * @param HSD the HSD to set
+     */
+    public void setHSD(String HSD) {
         this.HSD = HSD;
     }
+
+
+
+
 }

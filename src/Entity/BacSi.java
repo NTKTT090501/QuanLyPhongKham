@@ -12,68 +12,126 @@ import java.util.Date;
  * @author HA NAM
  */
 public class BacSi {
-    String MaBS;
-    String TenBS;
-    boolean Gioitinh;
-    String SDT;
-    Date Ngaysinh;
-    String Diachi;
-    String Chuyennganh;
- 
 
+    private String MaBS;
+    private String TenBS;
+    private String Gioitinh;
+    private String SDT;
+    private String Ngaysinh;
+    private String Diachi;
+    private String Chuyennganh;
+    private String tuoi;
+
+    /**
+     * @return the MaBS
+     */
     public String getMaBS() {
         return MaBS;
     }
 
+    /**
+     * @param MaBS the MaBS to set
+     */
     public void setMaBS(String MaBS) {
         this.MaBS = MaBS;
     }
 
+    /**
+     * @return the TenBS
+     */
     public String getTenBS() {
         return TenBS;
     }
 
+    /**
+     * @param TenBS the TenBS to set
+     */
     public void setTenBS(String TenBS) {
         this.TenBS = TenBS;
     }
 
-    public boolean getGioitinh() {
-        return Gioitinh;
-    }
-
-    public void setGioitinh(boolean Gioitinh) {
-        this.Gioitinh = Gioitinh;
-    }
-
+    /**
+     * @return the SDT
+     */
     public String getSDT() {
         return SDT;
     }
 
+    /**
+     * @param SDT the SDT to set
+     */
     public void setSDT(String SDT) {
         this.SDT = SDT;
     }
 
-    public Date getNgaysinh() {
-        return Ngaysinh;
-    }
-
-    public void setNgaysinh(Date Ngaysinh) {
-        this.Ngaysinh = Ngaysinh;
-    }
-
+    /**
+     * @return the Diachi
+     */
     public String getDiachi() {
         return Diachi;
     }
 
+    /**
+     * @param Diachi the Diachi to set
+     */
     public void setDiachi(String Diachi) {
         this.Diachi = Diachi;
     }
 
+    /**
+     * @return the Chuyennganh
+     */
     public String getChuyennganh() {
         return Chuyennganh;
     }
 
+    /**
+     * @param Chuyennganh the Chuyennganh to set
+     */
     public void setChuyennganh(String Chuyennganh) {
         this.Chuyennganh = Chuyennganh;
     }
+
+    /**
+     * @return the Gioitinh
+     */
+    public String getGioitinh() {
+        return Gioitinh;
+    }
+
+    /**
+     * @param Gioitinh the Gioitinh to set
+     */
+    public void setGioitinh(String Gioitinh) {
+        this.Gioitinh = Gioitinh;
+    }
+
+    /**
+     * @return the Ngaysinh
+     */
+    public String getNgaysinh() {
+        return Ngaysinh;
+    }
+
+    /**
+     * @param Ngaysinh the Ngaysinh to set
+     */
+    public void setNgaysinh(String Ngaysinh) {
+        this.Ngaysinh = Ngaysinh;
+    }
+
+    /**
+     * @return the tuoi
+     */
+    public String getTuoi() {
+        return tuoi;
+    }
+
+    /**
+     * @param tuoi the tuoi to set
+     */
+    public void setTuoi(String tuoi) {
+        this.tuoi = tuoi;
+    }
+
 }

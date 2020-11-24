@@ -12,69 +12,111 @@ import java.util.Date;
  * @author HA NAM
  */
 public class Benhnhan {
-    String maBN; 
-    String hoTen;
-    String ngaySinh;
-    boolean gioiTinh;
-    String diaChi;
-    boolean baoHiem;
-    int sdT;
+    private String maBN;
+    private String tenBN;
+    private String ngaySinh;
+    private String gioiTinh;
+    private String SDT;
+    private String Diachi;
+    private boolean baoHiem;
 
-    public int getSdT() {
-        return sdT;
-    }
-
-    public void setSdT(int sdT) {
-        this.sdT = sdT;
-    }
-
+    /**
+     * @return the maBN
+     */
     public String getMaBN() {
         return maBN;
     }
 
+    /**
+     * @param maBN the maBN to set
+     */
     public void setMaBN(String maBN) {
         this.maBN = maBN;
     }
 
-    public String getHoTen() {
-        return hoTen;
+    /**
+     * @return the tenBN
+     */
+    public String getTenBN() {
+        return tenBN;
     }
 
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
+    /**
+     * @param tenBN the tenBN to set
+     */
+    public void setTenBN(String tenBN) {
+        this.tenBN = tenBN;
     }
 
+    /**
+     * @return the ngaySinh
+     */
     public String getNgaySinh() {
         return ngaySinh;
     }
 
+    /**
+     * @param ngaySinh the ngaySinh to set
+     */
     public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
-    public boolean getGioiTinh() {
+    /**
+     * @return the gioiTinh
+     */
+    public String getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(boolean gioiTinh) {
+    /**
+     * @param gioiTinh the gioiTinh to set
+     */
+    public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
-    public String getDiaChi() {
-        return diaChi;
+    /**
+     * @return the SDT
+     */
+    public String getSDT() {
+        return SDT;
     }
 
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
+    /**
+     * @param SDT the SDT to set
+     */
+    public void setSDT(String SDT) {
+        this.SDT = SDT;
     }
 
-    public boolean getBaoHiem() {
+    /**
+     * @return the Diachi
+     */
+    public String getDiachi() {
+        return Diachi;
+    }
+
+    /**
+     * @param Diachi the Diachi to set
+     */
+    public void setDiachi(String Diachi) {
+        this.Diachi = Diachi;
+    }
+
+    /**
+     * @return the baoHiem
+     */
+    public boolean isBaoHiem() {
         return baoHiem;
     }
 
+    /**
+     * @param baoHiem the baoHiem to set
+     */
     public void setBaoHiem(boolean baoHiem) {
         this.baoHiem = baoHiem;
     }
-    
-    
+
+   
 }

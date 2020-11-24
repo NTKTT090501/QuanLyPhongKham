@@ -7,14 +7,11 @@ package quanlyphongkham;
 
 import DAO.BenhNhanDAO;
 import Entity.Benhnhan;
-import Utilities.Auth;
-import Utilities.MsgBox;
-import Utilities.XDate;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import util.Auth;
+import util.MsgBox;
 
 /**
  *
@@ -46,9 +43,9 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        txtmaBN = new javax.swing.JTextField();
+        txtMaBN = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txthoTen = new javax.swing.JTextField();
+        txtTenBN = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         rdoNam = new javax.swing.JRadioButton();
         rdoNu = new javax.swing.JRadioButton();
@@ -56,19 +53,19 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
         txtDiaChi = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txttuoi = new javax.swing.JTextField();
-        txtngaySinh = new javax.swing.JTextField();
+        txtTuoi = new javax.swing.JTextField();
+        txtNgaySinh = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtsdT = new javax.swing.JTextField();
-        rdoCo = new javax.swing.JRadioButton();
-        rdoKhong = new javax.swing.JRadioButton();
+        txtSDT = new javax.swing.JTextField();
+        rdoYes = new javax.swing.JRadioButton();
+        rdoNo = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblBenhNhan = new javax.swing.JTable();
-        btnThoat = new javax.swing.JButton();
-        btnXoa = new javax.swing.JButton();
-        btnSua = new javax.swing.JButton();
-        btnThem = new javax.swing.JButton();
-        btnNhapMoi = new javax.swing.JButton();
+        tblBang = new javax.swing.JTable();
+        btnExit = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnNew = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -90,15 +87,15 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
         jLabel3.setText("Họ Và Tên BN");
         jPanel2.add(jLabel3);
         jLabel3.setBounds(15, 83, 113, 22);
-        jPanel2.add(txtmaBN);
-        txtmaBN.setBounds(140, 40, 414, 30);
+        jPanel2.add(txtMaBN);
+        txtMaBN.setBounds(140, 40, 414, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Mã BN");
         jPanel2.add(jLabel4);
         jLabel4.setBounds(15, 41, 100, 22);
-        jPanel2.add(txthoTen);
-        txthoTen.setBounds(138, 85, 414, 30);
+        jPanel2.add(txtTenBN);
+        txtTenBN.setBounds(138, 85, 414, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Giới Tính");
@@ -132,33 +129,32 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
         jPanel2.add(jLabel8);
         jLabel8.setBounds(619, 41, 35, 22);
 
-        txttuoi.setEditable(false);
-        jPanel2.add(txttuoi);
-        txttuoi.setBounds(685, 43, 44, 22);
-        jPanel2.add(txtngaySinh);
-        txtngaySinh.setBounds(747, 43, 121, 22);
+        txtTuoi.setEditable(false);
+        jPanel2.add(txtTuoi);
+        txtTuoi.setBounds(685, 43, 44, 22);
+        jPanel2.add(txtNgaySinh);
+        txtNgaySinh.setBounds(747, 43, 121, 22);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("SĐT");
         jPanel2.add(jLabel9);
         jLabel9.setBounds(619, 83, 50, 22);
-        jPanel2.add(txtsdT);
-        txtsdT.setBounds(688, 85, 180, 22);
+        jPanel2.add(txtSDT);
+        txtSDT.setBounds(688, 85, 180, 22);
 
-        buttonGroupBaoHiem.add(rdoCo);
-        rdoCo.setText("Có");
-        jPanel2.add(rdoCo);
-        rdoCo.setBounds(120, 230, 43, 25);
+        buttonGroupBaoHiem.add(rdoYes);
+        rdoYes.setText("Có");
+        jPanel2.add(rdoYes);
+        rdoYes.setBounds(120, 230, 43, 25);
 
-        buttonGroupBaoHiem.add(rdoKhong);
-        rdoKhong.setText("Không");
-        jPanel2.add(rdoKhong);
-        rdoKhong.setBounds(200, 230, 63, 25);
+        buttonGroupBaoHiem.add(rdoNo);
+        rdoNo.setText("Không");
+        jPanel2.add(rdoNo);
+        rdoNo.setBounds(200, 230, 63, 25);
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 908, 280));
 
-        tblBenhNhan.setBackground(new java.awt.Color(204, 255, 255));
-        tblBenhNhan.setModel(new javax.swing.table.DefaultTableModel(
+        tblBang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -166,65 +162,67 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã BN", "Họ Tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Bảo hiểm", "SDT"
+                "Mã Bệnh Nhân", "Họ Tên", "Ngày Sinh", "Giới Tính", "Địa Chỉ", "Bảo Hiểm", "SĐT"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblBenhNhan.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblBang.setRowHeight(30);
+        tblBang.setRowMargin(4);
+        tblBang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblBenhNhanMouseClicked(evt);
+                tblBangMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblBenhNhan);
+        jScrollPane1.setViewportView(tblBang);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 910, 340));
 
-        btnThoat.setText("Thoát");
-        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setText("Thoát");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThoatActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
-        getContentPane().add(btnThoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 660, 110, 50));
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 660, 110, 50));
 
-        btnXoa.setText("Xóa");
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+        btnDel.setText("Xóa");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
+                btnDelActionPerformed(evt);
             }
         });
-        getContentPane().add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 660, 110, 50));
+        getContentPane().add(btnDel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 660, 110, 50));
 
-        btnSua.setText("Sửa");
-        btnSua.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Sửa");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 110, 50));
+        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 110, 50));
 
-        btnThem.setText("Thêm");
-        btnThem.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Thêm");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
-        getContentPane().add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 660, 110, 50));
+        getContentPane().add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 660, 110, 50));
 
-        btnNhapMoi.setText("Nhập Mới");
-        btnNhapMoi.addActionListener(new java.awt.event.ActionListener() {
+        btnNew.setText("Nhập Mới");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNhapMoiActionPerformed(evt);
+                btnNewActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNhapMoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 100, 50));
+        getContentPane().add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 100, 50));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/vector-MAY-2020-112.jpg"))); // NOI18N
@@ -233,35 +231,42 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnThoatActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
 
-    private void btnNhapMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapMoiActionPerformed
-        clearForm();
-    }//GEN-LAST:event_btnNhapMoiActionPerformed
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        // TODO add your handling code here:
+        this.delete();
+    }//GEN-LAST:event_btnDelActionPerformed
 
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
         if(checkform()){
-           insert(); 
-        }     
-    }//GEN-LAST:event_btnThemActionPerformed
-
-    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        update();
-    }//GEN-LAST:event_btnSuaActionPerformed
-
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        delete();
-    }//GEN-LAST:event_btnXoaActionPerformed
-
-    private void tblBenhNhanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBenhNhanMouseClicked
-        if(evt.getClickCount() == 2){
-            this.row = tblBenhNhan.getSelectedRow();
-            this.edit(); 
-            getForm();
+            this.update();
         }
-    }//GEN-LAST:event_tblBenhNhanMouseClicked
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        if(checkform()){
+            this.insert();
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        // TODO add your handling code here:
+        this.clearForm();
+    }//GEN-LAST:event_btnNewActionPerformed
+
+    private void tblBangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBangMouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2) {
+            this.row = tblBang.getSelectedRow();
+            this.edit();
+        }
+    }//GEN-LAST:event_tblBangMouseClicked
 
     /**
      * @param args the command line arguments
@@ -309,11 +314,11 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNhapMoi;
-    private javax.swing.JButton btnSua;
-    private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnThoat;
-    private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnNew;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroupBaoHiem;
     private javax.swing.ButtonGroup buttonGroupGioiTinh;
     private javax.swing.JLabel jLabel1;
@@ -328,42 +333,43 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JRadioButton rdoCo;
-    private javax.swing.JRadioButton rdoKhong;
     private javax.swing.JRadioButton rdoNam;
+    private javax.swing.JRadioButton rdoNo;
     private javax.swing.JRadioButton rdoNu;
-    private javax.swing.JTable tblBenhNhan;
+    private javax.swing.JRadioButton rdoYes;
+    private javax.swing.JTable tblBang;
     private javax.swing.JTextField txtDiaChi;
-    private javax.swing.JTextField txthoTen;
-    private javax.swing.JTextField txtmaBN;
-    private javax.swing.JTextField txtngaySinh;
-    private javax.swing.JTextField txtsdT;
-    private javax.swing.JTextField txttuoi;
+    private javax.swing.JTextField txtMaBN;
+    private javax.swing.JTextField txtNgaySinh;
+    private javax.swing.JTextField txtSDT;
+    private javax.swing.JTextField txtTenBN;
+    private javax.swing.JTextField txtTuoi;
     // End of variables declaration//GEN-END:variables
+
     BenhNhanDAO dao = new BenhNhanDAO();
     int row = -1;
 
     void init() {
         this.setLocationRelativeTo(null);
         this.row = -1;
-        this.updateStatus();
+        //this.updateStatus();
         this.fillTable();
     }
 
     void fillTable() {
-        DefaultTableModel model = (DefaultTableModel) tblBenhNhan.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblBang.getModel();
         model.setRowCount(0);//xóa sạch dữ liệu bên trong form bảng
         try {
-            List<Benhnhan> list = dao.selectAll();
+            List<Benhnhan> list = dao.selectALL();
             for (Benhnhan bn : list) {
                 Object[] row = {
                     bn.getMaBN(),
-                    bn.getHoTen(),
+                    bn.getTenBN(),
                     bn.getNgaySinh(),
-                    bn.getGioiTinh() ? "Nam" : "Nữ",
-                    bn.getDiaChi(),
-                    bn.getBaoHiem() ? "Có" : "Không",
-                    bn.getSdT()
+                    bn.getGioiTinh(),
+                    bn.getDiachi(),
+                    bn.isBaoHiem() ? "Có" : "Không",
+                    bn.getSDT()
                 };
                 model.addRow(row);
             }
@@ -374,47 +380,56 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
 
     Benhnhan getForm() {
         Benhnhan bn = new Benhnhan();
-        bn.setMaBN(txtmaBN.getText());
-        bn.setHoTen(txthoTen.getText());
-        bn.setNgaySinh(txtngaySinh.getText());
-        bn.setGioiTinh(rdoNam.isSelected());
-        bn.setDiaChi(txtDiaChi.getText());
-        bn.setBaoHiem(rdoCo.isSelected());
-        bn.setSdT(Integer.parseInt(txtsdT.getText()));
+        bn.setMaBN(txtMaBN.getText());
+        bn.setTenBN(txtTenBN.getText());
+        bn.setNgaySinh(txtNgaySinh.getText());
+        if (rdoNam.isSelected()) {
+            bn.setGioiTinh(rdoNam.getText());
+        }
+        if (rdoNu.isSelected()) {
+            bn.setGioiTinh(rdoNu.getText());
+        }
+        bn.setDiachi(txtDiaChi.getText());
+        bn.setBaoHiem(rdoYes.isSelected());
+        bn.setSDT(txtSDT.getText());
         return bn;
     }
 
     void setForm(Benhnhan bn) {
-        txtmaBN.setText(bn.getMaBN());
-        txthoTen.setText(bn.getHoTen());
-        txtngaySinh.setText(bn.getNgaySinh());
-        rdoNam.setSelected(bn.getGioiTinh());
-        rdoNu.setSelected(!bn.getGioiTinh());
-        txtDiaChi.setText(bn.getDiaChi());
-        rdoCo.setSelected(bn.getBaoHiem());
-        rdoKhong.setSelected(!bn.getBaoHiem());
-        txtsdT.setText(String.valueOf(bn.getSdT()));
-        txttuoi.setText(String.valueOf(tuoi()));
+        txtMaBN.setText(bn.getMaBN());
+        txtTenBN.setText(bn.getTenBN());
+        txtNgaySinh.setText(bn.getNgaySinh());
+        if (bn.getGioiTinh().equalsIgnoreCase("Nam")) {
+            rdoNam.setSelected(true);
+        } else if (bn.getGioiTinh().equalsIgnoreCase("Nữ")) {
+            rdoNu.setSelected(true);
+        }
+        txtDiaChi.setText(bn.getDiachi());
+        rdoYes.setSelected(bn.isBaoHiem());
+        rdoNo.setSelected(!bn.isBaoHiem());
+        txtSDT.setText(String.valueOf(bn.getSDT()));
+        txtTuoi.setText(String.valueOf(tuoi()));
     }
 
     void clearForm() {//btnMoi
-        txtmaBN.setText("");
-        txthoTen.setText("");
-        txtngaySinh.setText("");
-        buttonGroupGioiTinh.clearSelection();
+        txtMaBN.setText("");
+        txtTenBN.setText("");
+        txtTuoi.setText("");
+        rdoNam.setSelected(true);
         txtDiaChi.setText("");
-        buttonGroupBaoHiem.clearSelection();
-        txtsdT.setText("");
+        rdoYes.setSelected(true);
+        txtSDT.setText("");
+        txtNgaySinh.setText("");
         this.row = -1;
-        this.updateStatus();
+        // this.updateStatus();
     }
 
     void edit() {//tblBenhNhan
-        String mabn = (String) tblBenhNhan.getValueAt(this.row, 0);
+        String mabn = (String) tblBang.getValueAt(this.row, 0);
         Benhnhan nv = dao.selectById(mabn);
         this.row = -1;
         this.setForm(nv);
-        this.updateStatus();
+        // this.updateStatus();
     }
 
     void updateStatus() {
@@ -422,10 +437,10 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
 //        boolean first = (this.row == 0);
 //        boolean last = (this.row == tblNhanVien.getRowCount() - 1);
         //trạng thái form
-        txtmaBN.setEditable(!edit);
-        btnThem.setEnabled(!edit);
-        btnSua.setEnabled(edit);
-        btnXoa.setEnabled(edit);
+        txtMaBN.setEditable(!edit);
+        btnAdd.setEnabled(!edit);
+        btnUpdate.setEnabled(edit);
+        btnDel.setEnabled(edit);
 
         // trạng thái điều hướng
 //        btnFirst.setEnabled(edit && !first);
@@ -433,7 +448,7 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
 //        btnNext.setEnabled(edit && !last);
 //        btnLast.setEnabled(edit && !last);
     }
-     
+
     void insert() {
         Benhnhan bn = getForm();
         try {
@@ -443,6 +458,7 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
             MsgBox.alert(this, "thêm bệnh nhân thành công!");
         } catch (Exception e) {
             MsgBox.alert(this, "thêm bệnh nhân thất bại!!!");
+            System.out.print(e);
         }
     }
 
@@ -459,10 +475,10 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
     }
 
     void delete() {
-        if (!Auth.isManage()) {
+        if (!Auth.isManager()) {
             MsgBox.alert(this, "Bạn không có quyền xóa");
         } else {
-            String mabn = txtmaBN.getText();
+            String mabn = txtMaBN.getText();
             //không đc xóa chính nhân viên hiện tại
 //            if (mabn.equals(Auth.user.get())) {
 //                MsgBox.alert(this, "bạn không thể xóa chính bạn!");
@@ -477,61 +493,51 @@ public class QuanLyBenhNhan extends javax.swing.JDialog {
             }
         }
     }
-    
-    boolean checkform(){
-        String date = "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$"; 
-        if(txtmaBN.getText().length() == 0) {
+
+    boolean checkform() {
+        String regex = "^\\d{4}-\\d{2}-\\d{2}$";
+        if (txtMaBN.getText().length() == 0) {
             MsgBox.alert(this, "không để trống mã bệnh nhân");
             return false;
         }
-        
-        if(txthoTen.getText().length() == 0) {
+
+        if (txtTenBN.getText().length() == 0) {
             MsgBox.alert(this, "không để trống họ tên");
             return false;
         }
-        
-        if(rdoNam.isSelected() == false && rdoNu.isSelected() == false){
-            MsgBox.alert(this, "hãy chọn giới tính");
-            return false;
-        }
-        
-        if(txtngaySinh.getText().length() == 0) {
+
+        if (txtNgaySinh.getText().length() == 0) {
             MsgBox.alert(this, "không để trống ngày sinh");
             return false;
         }
-        
-        if(txtngaySinh.getText().equals(date)) {
-            MsgBox.alert(this, "không đúng định dạng ngày sinh!!! vd 01/01/1996");
+
+        if (!txtNgaySinh.getText().matches(regex)) {
+            MsgBox.alert(this, "không đúng định dạng ngày sinh!!! vd 2001-02-26");
             return false;
         }
-        
-        if(txtDiaChi.getText().length() == 0) {
+
+        if (txtDiaChi.getText().length() == 0) {
             MsgBox.alert(this, "không để trống địa chỉ");
             return false;
         }
-        
-        if(rdoCo.isSelected() == false && rdoKhong.isSelected() == false){
-            MsgBox.alert(this, "hãy chọn bảo hiểm");
-            return false;
-        }
-        
-        if(txtsdT.getText().length() == 0) {
+
+        if (txtSDT.getText().length() == 0) {
             MsgBox.alert(this, "không để trống SDT");
             return false;
         }
-                 
+
         return true;
     }
-    
-    int tuoi(){
+
+    int tuoi() {
         int namNgaySinh = 0;
-        Benhnhan list = dao.selectById(txtmaBN.getText());
-        String ngaysinh=list.getNgaySinh();
+        Benhnhan list = dao.selectById(txtMaBN.getText());
+        String ngaysinh = list.getNgaySinh();
         String[] parts = ngaysinh.split("-");
         String part1 = parts[0];
-        namNgaySinh=Integer.parseInt(String.valueOf(part1));
+        namNgaySinh = Integer.parseInt(String.valueOf(part1));
         int namHienTai = Calendar.getInstance().get(Calendar.YEAR);
-        int tuoi=namHienTai-namNgaySinh;
+        int tuoi = namHienTai - namNgaySinh;
         return tuoi;
     }
 }

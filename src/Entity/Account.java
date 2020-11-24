@@ -7,36 +7,52 @@ package Entity;
 
 /**
  *
- * @author HA NAM
+ * @author ADMIN
  */
 public class Account {
-    String userName;
-    String pass;
-    boolean vaiTro;
 
+    /**
+     * @return the UserName
+     */
     public String getUserName() {
-        return userName;
+        return UserName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    /**
+     * @param UserName the UserName to set
+     */
+    public void setUserName(String UserName) {
+        this.UserName = UserName;
     }
 
-    public String getPass() {
-        return pass;
+    /**
+     * @return the Password
+     */
+    public String getPassword() {
+        return Password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    /**
+     * @param Password the Password to set
+     */
+    public void setPassword(String Password) {
+        this.Password = Password;
     }
 
-    public boolean getVaiTro() {
-        return vaiTro;
+    /**
+     * @return the VaiTro
+     */
+    public Boolean getVaiTro() {
+        return VaiTro;
     }
 
-    public void setVaiTro(boolean vaiTro) {
-        this.vaiTro = vaiTro;
+    /**
+     * @param VaiTro the VaiTro to set
+     */
+    public void setVaiTro(Boolean VaiTro) {
+        this.VaiTro = VaiTro;
     }
-    
-    
+    private String UserName;
+    private String Password;
+    private Boolean VaiTro;
 }
