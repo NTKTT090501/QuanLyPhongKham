@@ -15,7 +15,7 @@ import Utilities.XJdbc;
  *
  * @author ADMIN
  */
-public class BacSiDAO extends clinicMN<BacSi, String>{
+public class BacSiDAO extends PlusDAO<BacSi, String>{
     String INSERT_SQL = "insert into BacSi(MaBS,TenBS, Chuyennganh, NgaySinh, DiaChi, SDT,GioiTinh) values(?,?,?,?,?,?,?)";
     String UPDATE_SQL = "update BacSi set TenBS=?, Chuyennganh=?, NgaySinh=? ,DiaChi=? ,SDT=? ,GioiTinh=? where MaBS=?";
     String DELETE_SQL = "delete from BacSi where MaBS=?";
@@ -31,7 +31,7 @@ public class BacSiDAO extends clinicMN<BacSi, String>{
                 entity.getNgaysinh(),
                 entity.getDiachi(),
                 entity.getSDT(),
-                entity.getGioitinh());
+                entity.isGioitinh());
     }
 
     @Override
@@ -42,7 +42,7 @@ public class BacSiDAO extends clinicMN<BacSi, String>{
                entity.getNgaysinh(),
                entity.getDiachi(),
                entity.getSDT(),
-               entity.getGioitinh(),
+               entity.isGioitinh(),
                entity.getMaBS());
     }
 
@@ -71,7 +71,7 @@ public class BacSiDAO extends clinicMN<BacSi, String>{
                entity.setTenBS(rs.getString("TenBS"));
                entity.setChuyennganh(rs.getString("Chuyennganh"));
                entity.setNgaysinh(rs.getString("NgaySinh"));
-               entity.setDiachi(rs.getString("DiaChi"));
+               entity.setDiachi(rs.getString("Diachi"));
                entity.setSDT(rs.getString("SDT"));
                entity.setGioitinh(rs.getBoolean("GioiTinh"));
                list.add(entity);
@@ -84,7 +84,7 @@ public class BacSiDAO extends clinicMN<BacSi, String>{
     } 
 
     @Override
-    public List<BacSi> selectAll() {
-        return this.selectBySql(SELECT_ALL_SQL);//To change body of generated methods, choose Tools | Templates.
+    public List<BacSi> selectALL() {
+        return this.selectBySql(SELECT_ALL_SQL); //To change body of generated methods, choose Tools | Templates.
     }
 }

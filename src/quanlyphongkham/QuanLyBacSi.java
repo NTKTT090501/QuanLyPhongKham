@@ -53,7 +53,7 @@ public class QuanLyBacSi extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtGhiChu = new javax.swing.JTextField();
+        txtDiaChi = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtTuoi = new javax.swing.JTextField();
         txtNgaySinh = new javax.swing.JTextField();
@@ -131,9 +131,9 @@ public class QuanLyBacSi extends javax.swing.JDialog {
         jPanel2.add(jLabel7);
         jLabel7.setBounds(20, 180, 57, 22);
 
-        txtGhiChu.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel2.add(txtGhiChu);
-        txtGhiChu.setBounds(113, 172, 760, 90);
+        txtDiaChi.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel2.add(txtDiaChi);
+        txtDiaChi.setBounds(113, 172, 760, 90);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Tuổi");
@@ -141,6 +141,7 @@ public class QuanLyBacSi extends javax.swing.JDialog {
         jLabel8.setBounds(619, 41, 35, 22);
 
         txtTuoi.setEditable(false);
+        txtTuoi.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jPanel2.add(txtTuoi);
         txtTuoi.setBounds(685, 43, 50, 30);
 
@@ -159,7 +160,6 @@ public class QuanLyBacSi extends javax.swing.JDialog {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 908, 280));
 
-        tblBang.setBackground(new java.awt.Color(204, 255, 255));
         tblBang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         tblBang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -341,28 +341,33 @@ public class QuanLyBacSi extends javax.swing.JDialog {
     private javax.swing.JRadioButton rdoNu;
     private javax.swing.JTable tblBang;
     private javax.swing.JTextField txtChuyenNganh;
-    private javax.swing.JTextField txtGhiChu;
+    private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtMaBS;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenBS;
     private javax.swing.JTextField txtTuoi;
     // End of variables declaration//GEN-END:variables
- BacSiDAO dao = new BacSiDAO();
+    BacSiDAO dao = new BacSiDAO();
     int row = -1;
+
+    void init() {
+        setLocationRelativeTo(null); // đưa cửa sổ ra giữa màn hình
+        this.fillTable(); // đổ dữ liệu nhân viên vào bảng
+    }
     
     void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblBang.getModel();
         model.setRowCount(0);
         try {
-            List<BacSi> list = dao.selectAll();
+            List<BacSi> list = dao.selectALL();
             for (BacSi bs : list) {
                 Object[] row = {
                     bs.getMaBS(),
                     bs.getTenBS(),
                     bs.getChuyennganh(),
                     bs.getDiachi(),
-                    bs.getGioitinh(),
+                    bs.isGioitinh(),
                     bs.getSDT(),
                     bs.getNgaysinh()
                 };
@@ -381,7 +386,7 @@ public class QuanLyBacSi extends javax.swing.JDialog {
         bs.setChuyennganh(txtChuyenNganh.getText());
         bs.setGioitinh(rdoNam.isSelected());
         bs.setGioitinh(!rdoNu.isSelected());
-        bs.setDiachi(txtGhiChu.getText());
+        bs.setDiachi(txtDiaChi.getText());
         bs.setNgaysinh(txtNgaySinh.getText());
         bs.setSDT(txtSDT.getText());
         return bs;
@@ -391,8 +396,8 @@ public class QuanLyBacSi extends javax.swing.JDialog {
         txtMaBS.setText(bs.getMaBS());
         txtTenBS.setText(bs.getTenBS());
         txtChuyenNganh.setText(bs.getChuyennganh());
-        txtGhiChu.setText(bs.getDiachi());
-        rdoNam.setSelected(bs.getGioitinh());
+        txtDiaChi.setText(bs.getDiachi());
+        rdoNam.setSelected(bs.isGioitinh());
         txtSDT.setText(bs.getSDT());
         txtNgaySinh.setText(bs.getNgaysinh());
         txtTuoi.setText(String.valueOf(TinhTuoi()));
@@ -431,11 +436,6 @@ public class QuanLyBacSi extends javax.swing.JDialog {
         }
     }
 
-    void init() {
-        setLocationRelativeTo(null); // đưa cửa sổ ra giữa màn hình
-        this.fillTable(); // đổ dữ liệu nhân viên vào bảng
-    }
-
     void delete() {
         if (!Auth.isManage()) {
             MsgBox.alert(this, "Bạn không có quyền xóa bác sĩ!");
@@ -458,17 +458,19 @@ public class QuanLyBacSi extends javax.swing.JDialog {
 
     void clearForm() {
         txtChuyenNganh.setText("");
-        txtGhiChu.setText("");
+        txtDiaChi.setText("");
         txtMaBS.setText("");
         txtNgaySinh.setText("");
         txtSDT.setText("");
         txtTenBS.setText("");
         txtTuoi.setText("");
         buttonGroup1.clearSelection();
+        this.row = -1;
     }
 
     boolean checkform() {
-        //String dateformat="^\d{4}-\d{2}-\d{2}$";
+//        String dateformat;
+//        dateformat = "^/d{4}-/d{2}-/d{2}$";
         String regex = "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$";
         if (txtMaBS.getText().equalsIgnoreCase("")) {
             MsgBox.alert(this, "Mã bác sĩ không được trống!");
@@ -476,7 +478,7 @@ public class QuanLyBacSi extends javax.swing.JDialog {
         } else if (txtChuyenNganh.getText().equalsIgnoreCase("")) {
             MsgBox.alert(this, "Bạn chưa nhập chuyên ngành!");
             return false;
-        } else if (txtGhiChu.getText().equalsIgnoreCase("")) {
+        } else if (txtDiaChi.getText().equalsIgnoreCase("")) {
             MsgBox.alert(this, "Bạn chưa nhập địa chỉ!");
             return false;
         } else if (txtNgaySinh.getText().equalsIgnoreCase("")) {
@@ -489,7 +491,7 @@ public class QuanLyBacSi extends javax.swing.JDialog {
             MsgBox.alert(this, "Bạn chưa nhập tên bác sĩ!");
             return false;
         } else if (!txtNgaySinh.getText().matches(regex)) {
-            MsgBox.alert(this, "Bạn nhập sai định dạng ngày sinh,hãy kiểm tra lại(yyy-mm-dd)!");
+            MsgBox.alert(this, "Bạn nhập sai định dạng ngày sinh,hãy kiểm tra lại(dd/mm/yyyy)!");
             return false;
         }
         return true;

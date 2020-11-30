@@ -5,6 +5,13 @@
  */
 package quanlyphongkham;
 
+import DAO.ThuocDAO;
+import Entity.Thuoc;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import util.Auth;
+import util.MsgBox;
+
 /**
  *
  * @author ADMIN
@@ -17,7 +24,7 @@ public class QuanLyThuoc extends javax.swing.JDialog {
     public QuanLyThuoc(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
+        init();
     }
 
     /**
@@ -33,21 +40,21 @@ public class QuanLyThuoc extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMaThuoc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txttenThuoc = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txtDonVi = new javax.swing.JTextField();
+        txtHSD = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        tblBang = new javax.swing.JTable();
+        btnExit = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnNew = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -70,24 +77,32 @@ public class QuanLyThuoc extends javax.swing.JDialog {
         jLabel3.setText("Tên Thuốc");
         jPanel2.add(jLabel3);
         jLabel3.setBounds(20, 100, 85, 22);
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(140, 40, 414, 30);
+
+        txtMaThuoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel2.add(txtMaThuoc);
+        txtMaThuoc.setBounds(140, 40, 414, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Mã Thuốc");
         jPanel2.add(jLabel4);
         jLabel4.setBounds(20, 40, 78, 22);
-        jPanel2.add(jTextField2);
-        jTextField2.setBounds(140, 100, 414, 30);
+
+        txttenThuoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel2.add(txttenThuoc);
+        txttenThuoc.setBounds(140, 100, 414, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Đơn vị thuốc");
         jPanel2.add(jLabel6);
         jLabel6.setBounds(20, 160, 110, 22);
-        jPanel2.add(jTextField3);
-        jTextField3.setBounds(140, 160, 410, 30);
-        jPanel2.add(jTextField7);
-        jTextField7.setBounds(140, 210, 410, 30);
+
+        txtDonVi.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel2.add(txtDonVi);
+        txtDonVi.setBounds(140, 160, 410, 30);
+
+        txtHSD.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel2.add(txtHSD);
+        txtHSD.setBounds(140, 210, 410, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Hạn Sử dụng");
@@ -100,8 +115,8 @@ public class QuanLyThuoc extends javax.swing.JDialog {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 908, 280));
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblBang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        tblBang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -109,32 +124,67 @@ public class QuanLyThuoc extends javax.swing.JDialog {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã Thuốc", "Tên Thuốc", "Đơn Vị", "Hạn Sử Dụng"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblBang.setRowHeight(30);
+        tblBang.setRowMargin(4);
+        tblBang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBangMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblBang);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 910, 340));
 
-        jButton4.setText("Thoát");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setText("Thoát");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 660, 110, 50));
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 660, 110, 50));
 
-        jButton3.setText("Xóa");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 660, 110, 50));
+        btnDel.setText("Xóa");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 660, 110, 50));
 
-        jButton2.setText("Sửa");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 110, 50));
+        btnUpdate.setText("Sửa");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 110, 50));
 
-        jButton1.setText("Thêm");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 660, 110, 50));
+        btnAdd.setText("Thêm");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 660, 110, 50));
 
-        jButton5.setText("Nhập Mới");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 100, 50));
+        btnNew.setText("Nhập Mới");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 100, 50));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/vector-MAY-2020-112.jpg"))); // NOI18N
@@ -143,9 +193,42 @@ public class QuanLyThuoc extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        // TODO add your handling code here:
+        this.clearForm();
+    }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        if (checkform()) {
+            this.insert();
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        if (checkform()) {
+            this.update();
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        // TODO add your handling code here:
+        this.delete();
+    }//GEN-LAST:event_btnDelActionPerformed
+
+    private void tblBangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBangMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            this.row = tblBang.getSelectedRow();
+            this.edit();
+        }
+    }//GEN-LAST:event_tblBangMouseClicked
 
     /**
      * @param args the command line arguments
@@ -193,11 +276,11 @@ public class QuanLyThuoc extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnNew;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -208,10 +291,133 @@ public class QuanLyThuoc extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTable tblBang;
+    private javax.swing.JTextField txtDonVi;
+    private javax.swing.JTextField txtHSD;
+    private javax.swing.JTextField txtMaThuoc;
+    private javax.swing.JTextField txttenThuoc;
     // End of variables declaration//GEN-END:variables
+    ThuocDAO dao = new ThuocDAO();
+    int row = -1;
+
+    void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) tblBang.getModel();
+        model.setRowCount(0);
+        try {
+            List<Thuoc> list = dao.selectALL();
+            for (Thuoc th : list) {
+                Object[] row = {
+                    th.getMaThuoc(),
+                    th.getTenthuoc(),
+                    th.getDVT(),
+                    th.getHSD(),};
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
+        }
+    }
+
+    Thuoc getform() {
+        Thuoc th = new Thuoc();
+        th.setMaThuoc(txtMaThuoc.getText());
+        th.setTenthuoc(txttenThuoc.getText());
+        th.setDVT(txtDonVi.getText());
+        th.setHSD(txtHSD.getText());
+        return th;
+    }
+
+    void setForm(Thuoc th) {
+        txtMaThuoc.setText(th.getMaThuoc());
+        txttenThuoc.setText(th.getTenthuoc());
+        txtDonVi.setText(th.getDVT());
+        txtHSD.setText(th.getHSD());
+    }
+
+    void edit() {
+        String math = (String) tblBang.getValueAt(this.row, 0);
+        Thuoc medic = dao.selectById(math);
+        this.setForm(medic);
+    }
+
+    void insert() {
+        Thuoc medic = this.getform();
+        try {
+            dao.insert(medic);
+            this.fillTable(); // đỗ lại bảng
+            this.clearForm(); // xóa trắng form
+            MsgBox.alert(this, "Thêm mới thành công!");
+
+        } catch (Exception e) {
+            MsgBox.alert(this, "Cập nhật thất bại!");
+            MsgBox.alert(this, "Mã bác sĩ có thể bị trùng,hãy kiểm tra lại!");
+        }
+    }
+
+    void update() {
+        Thuoc medic = this.getform();
+        try {
+            dao.update(medic); // cập nhật
+            this.fillTable(); // đổ lại bảng
+            MsgBox.alert(this, "Cập nhật thành công!");
+
+        } catch (Exception e) {
+            System.out.println(e);
+            MsgBox.alert(this, "Cập nhật thất bại!");
+        }
+    }
+
+    void delete() {
+        if (!Auth.isManager()) {
+            MsgBox.alert(this, "Bạn không có quyền xóa!");
+
+        } else {
+            String math = txtMaThuoc.getText();
+            try {
+                dao.delete(math);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "Xóa thành công!");
+
+            } catch (Exception e) {
+                System.out.println(e);
+                MsgBox.alert(this, "Xóa thất bại!");
+            }
+        }
+
+    }
+
+    private void clearForm() {
+        txtDonVi.setText("");
+        txtHSD.setText("");
+        txtMaThuoc.setText("");
+        txttenThuoc.setText("");
+    }
+
+    boolean checkform() {
+        String regex = "^\\d{4}-\\d{2}-\\d{2}$";
+        if (txtMaThuoc.getText().equals("")) {
+            MsgBox.alert(this, "Bạn chưa nhập mã thuốc");
+            return false;
+        } else if (txttenThuoc.getText().equals("")) {
+            MsgBox.alert(this, "Bạn chưa nhập tên thuốc");
+            return false;
+        } else if (txtDonVi.getText().equals("")) {
+            MsgBox.alert(this, "Bạn chưa nhập đơn vị thuốc");
+            return false;
+        } else if (txtHSD.getText().equals("")) {
+            MsgBox.alert(this, "Bạn chưa nhập Hạn sử dụng");
+            return false;
+        } else if (!txtHSD.getText().matches(regex)) {
+            MsgBox.alert(this, "Bạn nhập sai định dạng ngày,hãy kiểm tra lại(yyy-mm-dd)!");
+            return false;
+        }
+        return true;
+    }
+
+    private void init() {
+        setLocationRelativeTo(null); // đưa cửa sổ ra giữa màn hình
+        this.fillTable(); // đổ dữ liệu nhân viên vào bảng
+    }
 }

@@ -5,6 +5,8 @@
  */
 package quanlyphongkham;
 
+import java.awt.Color;
+
 /**
  *
  * @author ADMIN
@@ -18,6 +20,8 @@ public class QuanLyDonThuoc extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        panel.setBackground(new Color(0, 0, 0, 0));
+        panel2.setBackground(new Color(0, 0, 0, 0));
     }
 
     /**
@@ -29,89 +33,115 @@ public class QuanLyDonThuoc extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        btnExit = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnNew = new javax.swing.JButton();
+        tabThongTin = new javax.swing.JTabbedPane();
+        panel = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMaDonThuoc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtBacSi = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtLieuDung = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtMaPhieuKham = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtMaThuoc = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        tblThuoc = new javax.swing.JTable();
+        panel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDanhSach = new javax.swing.JTable();
+        lblBackGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(738, 932));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.setLayout(null);
+        btnExit.setText("Thoát");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 660, 110, 50));
+
+        btnXoa.setText("Xóa");
+        getContentPane().add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 660, 110, 50));
+
+        btnUpdate.setText("Sửa");
+        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 110, 50));
+
+        btnAdd.setText("Thêm");
+        getContentPane().add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 660, 110, 50));
+
+        btnNew.setText("Nhập Mới");
+        getContentPane().add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 100, 50));
+
+        panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Đơn Thuốc");
-        jPanel2.add(jLabel2);
+        jPanel3.add(jLabel2);
         jLabel2.setBounds(3, 3, 900, 29);
-        jPanel2.add(jSeparator1);
+        jPanel3.add(jSeparator1);
         jSeparator1.setBounds(3, 32, 890, 2);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Tên Bác Sĩ Kê");
-        jPanel2.add(jLabel3);
+        jPanel3.add(jLabel3);
         jLabel3.setBounds(20, 120, 120, 22);
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(160, 60, 414, 30);
+        jPanel3.add(txtMaDonThuoc);
+        txtMaDonThuoc.setBounds(160, 60, 414, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Mã Đơn Thuốc");
-        jPanel2.add(jLabel4);
+        jPanel3.add(jLabel4);
         jLabel4.setBounds(20, 60, 130, 22);
-        jPanel2.add(jTextField2);
-        jTextField2.setBounds(160, 120, 414, 30);
+        jPanel3.add(txtBacSi);
+        txtBacSi.setBounds(160, 120, 414, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Liều dùng");
-        jPanel2.add(jLabel6);
+        jPanel3.add(jLabel6);
         jLabel6.setBounds(20, 180, 110, 22);
-        jPanel2.add(jTextField3);
-        jTextField3.setBounds(160, 180, 410, 30);
+        jPanel3.add(txtLieuDung);
+        txtLieuDung.setBounds(160, 170, 410, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Mã Thuốc");
-        jPanel2.add(jLabel5);
+        jPanel3.add(jLabel5);
         jLabel5.setBounds(20, 240, 130, 30);
-        jPanel2.add(jTextField4);
-        jTextField4.setBounds(160, 300, 410, 30);
+        jPanel3.add(txtMaPhieuKham);
+        txtMaPhieuKham.setBounds(160, 300, 410, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Mã Phiếu Khám");
-        jPanel2.add(jLabel7);
+        jPanel3.add(jLabel7);
         jLabel7.setBounds(20, 300, 140, 30);
-        jPanel2.add(jTextField5);
-        jTextField5.setBounds(160, 240, 410, 30);
+        jPanel3.add(txtMaThuoc);
+        txtMaThuoc.setBounds(160, 240, 410, 30);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/bill medical 1.png"))); // NOI18N
-        jPanel2.add(jLabel8);
-        jLabel8.setBounds(660, 100, 210, 200);
+        jPanel3.add(jLabel8);
+        jLabel8.setBounds(650, 80, 210, 200);
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 908, 390));
+        panel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 910, 350));
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblThuoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -122,40 +152,44 @@ public class QuanLyDonThuoc extends javax.swing.JDialog {
                 "Mã Thuốc", "Tên Thuốc", "Đơn Vị", "Hạn Sử Dụng"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblThuoc);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 910, 230));
+        panel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 910, 240));
 
-        jButton4.setText("Thoát");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        tabThongTin.addTab("Thông tin", panel);
+
+        panel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblDanhSach.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tblDanhSach.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 660, 110, 50));
+        ));
+        jScrollPane2.setViewportView(tblDanhSach);
 
-        jButton3.setText("Xóa");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 660, 110, 50));
+        panel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 610));
 
-        jButton2.setText("Sửa");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 110, 50));
+        tabThongTin.addTab("Danh Sách", panel2);
 
-        jButton1.setText("Thêm");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 660, 110, 50));
+        getContentPane().add(tabThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 640));
 
-        jButton5.setText("Nhập Mới");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 100, 50));
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/vector-MAY-2020-112.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 932, 738));
+        lblBackGround.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblBackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/vector-MAY-2020-112.jpg"))); // NOI18N
+        getContentPane().add(lblBackGround, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 932, 738));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,6 +224,30 @@ public class QuanLyDonThuoc extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -207,12 +265,11 @@ public class QuanLyDonThuoc extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnNew;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -220,14 +277,20 @@ public class QuanLyDonThuoc extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel lblBackGround;
+    private javax.swing.JPanel panel;
+    private javax.swing.JPanel panel2;
+    private javax.swing.JTabbedPane tabThongTin;
+    private javax.swing.JTable tblDanhSach;
+    private javax.swing.JTable tblThuoc;
+    private javax.swing.JTextField txtBacSi;
+    private javax.swing.JTextField txtLieuDung;
+    private javax.swing.JTextField txtMaDonThuoc;
+    private javax.swing.JTextField txtMaPhieuKham;
+    private javax.swing.JTextField txtMaThuoc;
     // End of variables declaration//GEN-END:variables
 }

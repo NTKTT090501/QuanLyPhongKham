@@ -20,14 +20,6 @@ public class Benhnhan {
     boolean baoHiem;
     String sdT;
 
-    public String getSdT() {
-        return sdT;
-    }
-
-    public void setSdT(String sdT) {
-        this.sdT = sdT;
-    }
-
     public String getMaBN() {
         return maBN;
     }
@@ -52,7 +44,7 @@ public class Benhnhan {
         this.ngaySinh = ngaySinh;
     }
 
-    public boolean getGioiTinh() {
+    public boolean isGioiTinh() {
         return gioiTinh;
     }
 
@@ -68,13 +60,23 @@ public class Benhnhan {
         this.diaChi = diaChi;
     }
 
-    public boolean getBaoHiem() {
+    public boolean isBaoHiem() {
         return baoHiem;
     }
 
     public void setBaoHiem(boolean baoHiem) {
         this.baoHiem = baoHiem;
     }
-    
-    
+
+    public String getSdT() {
+        return sdT;
+    }
+
+    public void setSdT(String sdT) {
+        this.sdT = sdT;
+    }
+
+   
+
+   
 }

@@ -58,7 +58,7 @@ public class ChaoJDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(pgbLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -114,7 +114,7 @@ public class ChaoJDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 private void init() {
         this.setLocationRelativeTo(null);
-        new Timer(15,new ActionListener() {
+        new Timer(5,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
               int value=pgbLoad.getValue();

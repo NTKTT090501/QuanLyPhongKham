@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Du%20an%201%20UDPM/QuanLyPhongKham/src/Entity/DonThuoc.java</file>
+            <file>file:/D:/Du%20an%201%20UDPM/QuanLyPhongKham/src/DAO/PhieuKhamDAO.java</file>
+            <file>file:/D:/Du%20an%201%20UDPM/QuanLyPhongKham/src/quanlyphongkham/QuanLyPhieuKham.java</file>
             <file>file:/D:/Du%20an%201%20UDPM/QuanLyPhongKham/src/quanlyphongkham/QuanLyBacSi.java</file>
-            <file>file:/D:/Du%20an%201%20UDPM/QuanLyPhongKham/src/Entity/BacSi.java</file>
+            <file>file:/D:/Du%20an%201%20UDPM/QuanLyPhongKham/src/DAO/ThongkeDAO.java</file>
         </group>
     </open-files>
 </project-private>
